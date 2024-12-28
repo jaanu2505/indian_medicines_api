@@ -4,7 +4,7 @@ import re
 
 app = Flask(__name__)
 
-df = pd.read_csv(r"resource\medicine_names.csv")
+df = pd.read_csv(r"medicine_names.csv")
 print(df.head())
 
 @app.route('/api/v1/medicines', methods=['GET', 'POST'])
