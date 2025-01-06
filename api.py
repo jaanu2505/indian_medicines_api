@@ -3,12 +3,23 @@ from flask import Flask, jsonify, request
 # import pandas as pd
 from pymongo import MongoClient
 import re
+import os
 
 app = Flask(__name__)
-mongo_url='mongodb+srv://janhavipal:jaan2405@cluster0.s5pfi.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0'
-client = MongoClient(mongo_url)
-db = client['janhavi']  # Replace with your database name
-collection = db['medicine_sku']      # Replace with your collection name
+mongodb_url=os.getenv('MONGO_URL')
+
+# client = MongoClient(mongo_url)
+# db = client['janhavi']  # Replace with your database name
+# collection = db['medicine_sku']      # Replace with your collection name
+
+try:
+    client = MongoClient(mongodb_url)
+    db = client['janhavi']
+    collection = db['medicine_sku']
+except Exception as e:
+    print(f"Error connecting to MongoDB: {e}")
+    exit(1)  # Exit the application if the connection fails
+
 
 # <<<<<<< HEAD
 
