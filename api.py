@@ -39,7 +39,7 @@ def manage_medicines():
         print(f"Name filter value: {filter_value}")  # Debug log
         if filter_value:
             # Use a case-insensitive regex to filter by name
-            regex = re.compile(filter_value, re.IGNORECASE)
+            regex = re.compile(f"^{re.escape(filter_value)}", re.IGNORECASE)
             filtered_data = list(collection.find({'name': regex}))
             print(f"Filtered data: {filtered_data}")  # Debug log
             if not filtered_data:
